@@ -7,7 +7,8 @@ import {
   ACTION_UPDATE_ITEM_PROPS,
 } from '../actions';
 
-import type { ItemSelectionAction, ItemAction, ItemProps } from '../actions';
+import type { ItemSelectionAction, ItemAction } from '../actions';
+import type { ItemProps } from '../components/addons';
 
 export const selectedItemReducer = (
   state: ?string = null,

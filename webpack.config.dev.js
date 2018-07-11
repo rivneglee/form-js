@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/example.js',
+  entry: './src/examples/app.js',
   devtool: 'source-map',
   mode: 'development',
   output: {
@@ -11,7 +11,7 @@ module.exports = {
     chunkFilename: '[name].js',
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: 'src/templates/example.html' }),
+    new HtmlWebpackPlugin({ template: 'src/examples/index.html' }),
   ],
   module: {
     rules: [

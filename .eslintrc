@@ -7,7 +7,8 @@
   },
   "globals": {
     "setFixtures": true,
-    "appendSetFixtures": true
+    "appendSetFixtures": true,
+    "SyntheticEvent": true
   },
   "rules": {
     "radix": "off",

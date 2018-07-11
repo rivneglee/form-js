@@ -1,0 +1,35 @@
+.addon-text {
+  p {
+    margin-top: 0px;
+  }
+  color: white;
+  font-size: 24px;
+  overflow: hidden;
+  word-wrap: break-word;
+  &--editing {
+    overflow: visible;
+    min-width: 350px;
+  }
+}
+
+.rdw-editor-toolbar {
+  position: relative;
+  top: -53px;
+  background-color: rgba(255,255,255,0.8);
+  margin-bottom: 0px;
+  zoom: 70%;
+}
+
+.rdw-block-dropdown, .rdw-fontsize-dropdown {
+  color: dimgray;
+}
+
+.rdw-editor-main {
+  position: relative;
+  top: -33px;
+}
+
+.public-DraftStyleDefault-block {
+  margin: 0px;
+}
+

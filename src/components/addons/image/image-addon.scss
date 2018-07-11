@@ -1,0 +1,10 @@
+.image-canvas-view {
+    &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        color: white;
+        overflow: hidden;
+    }
+}
