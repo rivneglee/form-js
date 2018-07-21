@@ -1,0 +1,59 @@
+.project-workspace {
+  display: table;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(51,71,91);
+  font-family: "Open Sans", Helvetica, sans-serif;
+  box-sizing: border-box;
+  &__panel {
+    display: table-row;
+  }
+
+  &__sidebar {
+    display: table-cell;
+    width: 160px;
+    height: 100%;
+  }
+
+  &__toolbox {
+    background-color: #333;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    overflow: hidden;
+    -webkit-transition: width 1s;
+    transition: left 1s;
+    &--expand {
+      left: 0px;
+    }
+    &--collapse {
+      left: -160px;
+    }
+  }
+
+  &__properties-panel {
+    background-color: #333;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    overflow: hidden;
+    -webkit-transition: width 1s;
+    transition: left 1s;
+    &--expand {
+      left: 0px;
+    }
+    &--collapse {
+      left: -160px;
+    }
+  }
+
+  &__content {
+    display: table-cell;
+    padding: 5px 30px 5px 30px;
+
+    > div {
+      position: relative;
+      top: 5px;
+    }
+  }
+}

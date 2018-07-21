@@ -1,0 +1,25 @@
+.toolbox {
+  color: white;
+  width: 130px;
+  padding: 10px;
+  height: 100%;
+  &__button {
+    width: 110px;
+    padding: 20px 10px;
+    margin: 0 auto;
+    background-color: #333;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__button:hover {
+    background-color: #4d4d4c;
+  }
+
+  &__label {
+    margin-top: 0.8em;
+  }
+
+  &__icon {
+  }
+}

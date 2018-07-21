@@ -1,64 +1,84 @@
 /* @flow */
 import React, { Component } from 'react';
 import ScrollBar from '../../scrollbar';
-import { withDraggableWrapper, withResizerAndPositioner } from '../../../high-order';
-import addOns from '../../addons';
 import type { AddOn, ItemProps } from '../../addons';
+import createAddonsView from '../createAddonsView';
 import '../canvas.scss';
 
 type Props = {
+  id: string,
+  addons: Array<AddOn>,
   items: Array<ItemProps>,
+  onSelectedItemChanged?: (selectedItem: ?string) => void,
+  updateItemProps?: (item: ItemProps) => void,
 };
 
 type State = {
   selectedItem: ?string,
 };
 
-const wrapAddonsView = (addons: Array<AddOn>) => {
-  const map = {};
-  addons.forEach((addon: AddOn) => {
-    const { type, CanvasView } = addon;
-    map[type] = withResizerAndPositioner(withDraggableWrapper('canvas_item', 0.1)(CanvasView));
-  });
-  return map;
-};
-
 const View = class extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    const { addons } = props;
     this.state = {
       selectedItem: null,
     };
-    this.addonViews = wrapAddonsView(addOns);
+    this.addonViews = createAddonsView(addons);
   }
 
-  onSelectItem = (evt: SyntheticEvent<HTMLDivElement>, selectedItem: ?string) => {
+  onSelectedItemChanged = (evt: SyntheticEvent<HTMLDivElement>, selectedItem: ?string) => {
+    const { onSelectedItemChanged } = this.props;
     this.setState({
       selectedItem,
     });
+    if (onSelectedItemChanged) {
+      onSelectedItemChanged(selectedItem);
+    }
     evt.stopPropagation();
+  };
+
+  onMoveItem = (x: number, y: number) => {
+    const { selectedItem } = this.state;
+    const { updateItemProps } = this.props;
+    if (selectedItem && updateItemProps) {
+      updateItemProps({ id: selectedItem, x, y });
+    }
+  };
+
+  onResizeItem = (width: number, height: number) => {
+    const { selectedItem } = this.state;
+    const { updateItemProps } = this.props;
+    if (selectedItem && updateItemProps) {
+      updateItemProps({ id: selectedItem, width, height });
+    }
   };
 
   addonViews: Object;
 
   render() {
     const { selectedItem } = this.state;
-    const { items } = this.props;
+    const { items, id } = this.props;
     return (
-      <div className="canvas" onMouseDown={evt => this.onSelectItem(evt, null)}>
+      <div id={id} className="canvas" onMouseDown={evt => this.onSelectedItemChanged(evt, null)}>
         <ScrollBar>
           {items.map((item: ItemProps) => {
-            const { id, type, ...rest } = item;
-            if (!type || !id) return null;
+            const { type, ...rest } = item;
+            if (!type || !item.id) return null;
             const ItemView = this.addonViews[type];
-            const cssClass = selectedItem === id ? 'canvas__item--selected' : '';
+            const cssClass = selectedItem === item.id ? 'canvas__item--selected' : '';
             return (
               <div
-                key={id}
+                key={item.id}
                 className={`canvas__item ${cssClass}`}
-                onMouseDown={evt => this.onSelectItem(evt, id)}
+                onMouseDown={evt => this.onSelectedItemChanged(evt, item.id)}
               >
-                <ItemView id={id} {...rest} />
+                <ItemView
+                  id={item.id}
+                  onMove={this.onMoveItem}
+                  onResize={this.onResizeItem}
+                  {...rest}
+                />
               </div>
             );
           })}

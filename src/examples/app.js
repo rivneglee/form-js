@@ -4,11 +4,7 @@ import ReactDOM from 'react-dom';
 import { connect, Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { itemsReducer, selectedItemReducer } from '../reducers';
-import { withDndWrapper } from '../high-order';
-
-import { Canvas } from '../index';
-
-const View = withDndWrapper(Canvas);
+import { Workspace } from '../index';
 
 const store = createStore(
   combineReducers({
@@ -19,7 +15,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <View />
+    <Workspace />
   </Provider>,
   document.getElementById('wrapper'),
 );

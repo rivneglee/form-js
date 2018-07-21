@@ -1,8 +1,7 @@
 /* @flow */
 
 import {
-  ACTION_DESELECT_ITEM,
-  ACTION_SELECT_ITEM,
+  ACTION_SELECTED_ITEM_CHANGED,
   ACTION_ADD_ITEM_TO_CANVAS,
   ACTION_UPDATE_ITEM_PROPS,
 } from '../actions';
@@ -16,8 +15,7 @@ export const selectedItemReducer = (
 ): ?string => {
   const { type } = action;
   switch (type) {
-    case ACTION_DESELECT_ITEM:
-    case ACTION_SELECT_ITEM: {
+    case ACTION_SELECTED_ITEM_CHANGED: {
       const { id } = action;
       if (state !== id) {
         return id;

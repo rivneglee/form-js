@@ -13,6 +13,8 @@ type OtherProps = {
   width: number | string,
   height: number | string,
   className?: string,
+  onResize?: (width: number, height: number) => void,
+  onMove?: (x: number, y: number) => void,
 };
 
 type Props = Coordinate & OtherProps;
@@ -51,16 +53,24 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
   }
 
     onResize = (evt: any, direction: any, ref: any, delta: any, position: Coordinate) => {
+      const { onResize } = this.props;
       this.setState({
-        width: ref.style.width,
-        height: ref.style.height,
+        width: ref.offsetWidth,
+        height: ref.offsetHeight,
         ...position,
       });
+      if (onResize) {
+        onResize(ref.offsetWidth, ref.offsetHeight);
+      }
     };
 
     onMove = (evt: any, position: Coordinate) => {
+      const { onMove } = this.props;
       const { x, y } = position;
       this.setState({ x, y });
+      if (onMove) {
+        onMove(x, y);
+      }
     };
 
     render() {
@@ -74,7 +84,7 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
           size={{ width, height }}
           position={{ x, y }}
           onDragStop={this.onMove}
-          onResize={this.onResize}
+          onResizeStop={this.onResize}
         >
           <ComposedComponent {...rest} width="100%" height="100%" />
         </Rnd>

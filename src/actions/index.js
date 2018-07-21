@@ -3,8 +3,7 @@ import type { ItemProps } from '../components/addons';
 
 export const ACTION_ADD_ITEM_TO_CANVAS = 'ADD_ITEM';
 export const ACTION_UPDATE_ITEM_PROPS = 'UPDATE_ITEM_PROPS';
-export const ACTION_SELECT_ITEM = 'SELECT_ITEM';
-export const ACTION_DESELECT_ITEM = 'DESELECT_ITEM';
+export const ACTION_SELECTED_ITEM_CHANGED = 'SELECTED_ITEM_CHANGED';
 
 export type Action = {
   type: string,
@@ -22,13 +21,8 @@ export type ItemAction = Action & {
 };
 
 export const selectItemActionCreator = (id: string): Action => ({
-  type: ACTION_SELECT_ITEM,
+  type: ACTION_SELECTED_ITEM_CHANGED,
   id,
-});
-
-export const deselectItemActionCreator = (): Action => ({
-  type: ACTION_DESELECT_ITEM,
-  id: null,
 });
 
 export const addItemToCanvasActionCreator = (canvasId: string, props: ItemProps): ItemAction => ({

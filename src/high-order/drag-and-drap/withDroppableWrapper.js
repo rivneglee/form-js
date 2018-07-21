@@ -1,4 +1,6 @@
+/* @flow */
 import React from 'react';
+import type { ComponentType as C } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DropTarget } from 'react-dnd';
 
@@ -8,15 +10,18 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 });
 
-const defaultEventHandlers = {
-  onDrop: () => {},
+type Props = {
+  onDrop: (Object, Object, Object) => void,
 };
 
-const withDroppableWrapper = (
-  type = 'global',
-  eventHandlers = defaultEventHandlers,
-) => (ComposedComponent) => {
-  const Wrapper = class extends React.Component {
+type OtherProps = {
+  connectDropTarget: any,
+  isOver: boolean,
+  canDrop: boolean,
+};
+
+const withDroppableWrapper = (type: string = 'global') => (ComposedComponent: C<*>) => {
+  const Wrapper = class extends React.Component<Props & OtherProps> {
     render() {
       const { connectDropTarget, ...rest } = this.props;
       return connectDropTarget(
@@ -27,22 +32,24 @@ const withDroppableWrapper = (
     }
   };
 
-  const { onDrop } = eventHandlers;
-
   const spec = {
     drop(props, monitor, component) {
       /* eslint-disable-next-line */
-      const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+      const node = findDOMNode(component);
+      if (!node) return;
+      // $flow-disable-line
+      const hoverBoundingRect = node.getBoundingClientRect();
       const clientOffset = monitor.getClientOffset();
       const y = clientOffset.y - hoverBoundingRect.top;
       const x = clientOffset.x - hoverBoundingRect.left;
+      const { onDrop } = props;
       onDrop(
         {
-          type: monitor.getItemType(),
           position: { x, y },
           positionDelta: monitor.getDifferenceFromInitialOffset(),
         },
         monitor.getItem(),
+        monitor.getItemType(),
         props,
       );
     },

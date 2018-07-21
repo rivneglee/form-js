@@ -18,10 +18,12 @@ export const within = object => {
         stubs.push(name);
         object.__Rewire__(name, value);
         return replace;
-      }
+      },
     }),
     reset: (name = '') =>
-      stubs.filter(n => (name ? n === name : true)).forEach(stub => object.__ResetDependency__(stub))
+      stubs
+        .filter(n => (name ? n === name : true))
+        .forEach(stub => object.__ResetDependency__(stub)),
   };
 
   return replace;

@@ -1,0 +1,44 @@
+.properties-panel {
+  color: white;
+  width: 140px;
+  padding: 30px 10px 30px 10px;
+  height: 100%;
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  &__field-group {
+    overflow: hidden;
+    padding-bottom: 8px;
+  }
+
+  &__label {
+    font-size: 11px;
+    display: inline-block;
+    padding: 5px;
+    position: relative;
+    &--minor {
+      font-size: 9px;
+      width: 10px;
+      text-align: center;
+    }
+  }
+
+  &__text-field {
+    background: #4e4e4e;
+    border: 0px;
+    height: 18px;
+    color: white;
+    width: 120px;
+    font-size: 14px;
+    padding: 5px;
+    &--short {
+      width: 40px;
+    }
+  }
+}
