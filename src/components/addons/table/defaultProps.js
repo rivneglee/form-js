@@ -6,5 +6,4 @@ export default ({
     width: 350,
     height: 33,
   },
-  content: '<p>TEXT</p>',
 }: DefaultProps);

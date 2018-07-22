@@ -8,6 +8,7 @@ export type ItemProps = {
   height?: number,
   x?: number,
   y?: number,
+  onPropsChanged?: (item: ItemProps) => void,
 };
 
 export type DefaultProps = {

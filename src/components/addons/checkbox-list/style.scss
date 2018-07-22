@@ -1,0 +1,52 @@
+.addon-checkbox-list {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  &__label {
+    font-size: 24px;
+    word-wrap: break-word;
+    .editable-content {
+      .rdw-editor-wrapper {
+        margin-top: -33px;
+      }
+    }
+  }
+
+  &__content {
+    font-size: 14px;
+    padding: 3px 0px 0px 3px;
+  }
+
+  &__option {
+    display: flex;
+    input[type=checkbox] {
+      margin: 5px 6px 0px 4px;
+    }
+  }
+
+  &__editor {
+    .rdw-editor-toolbar {
+      background-color: rgba(255,255,255,0.8);
+      margin-bottom: 0px;
+      zoom: 70%;
+    }
+
+    .rdw-editor-wrapper {
+      margin-top: -48px;
+    }
+
+    .rdw-block-dropdown, .rdw-fontsize-dropdown {
+      color: dimgray;
+    }
+
+    .public-DraftStyleDefault-block {
+      margin: 0px;
+    }
+  }
+}
+

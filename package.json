@@ -17,6 +17,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "draft-js": "^0.10.5",
+    "draft-js-checkable-list-item": "^3.0.3",
     "draftjs-to-html": "^0.8.4",
     "es6-string-polyfills": "^1.0.0",
     "font-awesome": "^4.7.0",

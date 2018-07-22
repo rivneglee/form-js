@@ -10,8 +10,8 @@ const dragSource = {
     return { ...props };
   },
 
-  canDrag({ disableDrag }) {
-    return !disableDrag;
+  canDrag({ disableDragging }) {
+    return !disableDragging;
   },
 };
 

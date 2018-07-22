@@ -14,7 +14,8 @@ type OtherProps = {
   height: number | string,
   className?: string,
   onResize?: (width: number, height: number) => void,
-  onMove?: (x: number, y: number) => void,
+  onMove?: (x: number, y: number, deltaX: number, deltaY: number) => void,
+  disableDragging?: boolean,
 };
 
 type Props = Coordinate & OtherProps;
@@ -52,12 +53,11 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
     }
   }
 
-    onResize = (evt: any, direction: any, ref: any, delta: any, position: Coordinate) => {
+    onResize = (evt: any, direction: any, ref: any) => {
       const { onResize } = this.props;
       this.setState({
         width: ref.offsetWidth,
         height: ref.offsetHeight,
-        ...position,
       });
       if (onResize) {
         onResize(ref.offsetWidth, ref.offsetHeight);
@@ -65,11 +65,14 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
     };
 
     onMove = (evt: any, position: Coordinate) => {
-      const { onMove } = this.props;
-      const { x, y } = position;
+      const { onMove, x, y } = this.props;
+      const newX = position.x;
+      const newY = position.y;
+      const deltaX = newX - x;
+      const deltaY = newY - y;
       this.setState({ x, y });
       if (onMove) {
-        onMove(x, y);
+        onMove(newX, newY, deltaX, deltaY);
       }
     };
 
@@ -77,16 +80,22 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
       const {
         width, height, x, y,
       } = this.state;
-      const { className, ...rest } = this.props;
+      const { className, disableDragging, ...rest } = this.props;
       return (
         <Rnd
           className={className || ''}
           size={{ width, height }}
+          disableDragging={disableDragging}
           position={{ x, y }}
-          onDragStop={this.onMove}
-          onResizeStop={this.onResize}
+          onDrag={this.onMove}
+          onResize={this.onResize}
         >
-          <ComposedComponent {...rest} width="100%" height="100%" />
+          <ComposedComponent
+            disableDragging={disableDragging}
+            {...rest}
+            width="100%"
+            height="100%"
+          />
         </Rnd>
       );
     }

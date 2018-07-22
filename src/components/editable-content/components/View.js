@@ -6,13 +6,13 @@ import {
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import '../text.scss';
-import type { ItemProps } from '../../types';
-
-const initText = '<p>TEXT</p>';
+import '../style.scss';
+import type { ItemProps } from '../../addons/types';
 
 type OtherProps = {
   content: ?string,
+  className?: string,
+  editingClassName?: string,
 };
 
 type State = {
@@ -25,7 +25,7 @@ export default class extends React.Component<ItemProps & OtherProps, State> {
   constructor(props: ItemProps & OtherProps) {
     super(props);
     const { content } = props;
-    const blocksFromHTML = convertFromHTML(initText);
+    const blocksFromHTML = convertFromHTML(content);
     const state = ContentState.createFromBlockArray(
       blocksFromHTML.contentBlocks,
       blocksFromHTML.entityMap,
@@ -76,12 +76,14 @@ export default class extends React.Component<ItemProps & OtherProps, State> {
   editorReference: Editor;
 
   render() {
-    const { id, width, height } = this.props;
+    const {
+      id, width, height, className = '', editingClassName = '',
+    } = this.props;
     const { editorState, enableEditing, content } = this.state;
-    const editingStyle = enableEditing ? 'addon-text--editing' : '';
+    const editingStyle = enableEditing ? editingClassName : '';
     return (
       <div
-        className={`addon-text ${editingStyle}`}
+        className={`editable-content ${className} ${editingStyle}`}
         id={id}
         style={{
           width,
