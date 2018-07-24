@@ -6,7 +6,7 @@ type OtherProps = {};
 
 type State = {};
 
-export default class extends React.Component<ItemProps & OtherProps, State> {
+export default class extends React.PureComponent<ItemProps & OtherProps, State> {
   render() {
     const { id, width, height } = this.props;
     return (

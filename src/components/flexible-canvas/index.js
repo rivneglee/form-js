@@ -1,15 +1,22 @@
 import { connect } from 'react-redux';
 import View from './components/View';
 import { withDroppableWrapper } from '../../high-order';
-import { updateItemPropsActionCreator, selectItemActionCreator } from '../../actions';
+import {
+  updateItemsPropsActionCreator,
+  selectItemActionCreator,
+} from '../../actions';
 
 const mapDispatchToProps = dispatch => ({
-  updateItemProps: props => dispatch(updateItemPropsActionCreator(props)),
+  onItemsPropsUpdated: items => dispatch(updateItemsPropsActionCreator(items)),
   onSelectedItemChanged: id => dispatch(selectItemActionCreator(id)),
 });
 
+const mapStateToProps = ({ items }) => ({
+  items: Object.values(items),
+});
+
 const Canvas = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(withDroppableWrapper(['toolbox_item', 'canvas_item'])(View));
 

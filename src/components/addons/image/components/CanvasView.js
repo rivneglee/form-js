@@ -3,7 +3,7 @@ import React from 'react';
 import '../image-addon.scss';
 import type { ItemProps } from '../../types';
 
-export default class extends React.Component<ItemProps> {
+export default class extends React.PureComponent<ItemProps> {
   render() {
     const { id, width, height } = this.props;
     return (

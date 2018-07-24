@@ -21,7 +21,7 @@ describe('Canvas View', () => {
 
   const stub = within(createAddonsView);
 
-  const withDraggableWrapperMock = jasmine.createSpy().and.returnValue(C => C);
+  // const withDraggableWrapperMock = jasmine.createSpy().and.returnValue(C => C);
 
   const connectMock = jasmine.createSpy().and.returnValue(C => C);
 
@@ -29,8 +29,8 @@ describe('Canvas View', () => {
 
   beforeAll(() => {
     stub
-      .replace('withDraggableWrapper')
-      .with(withDraggableWrapperMock)
+      // .replace('withDraggableWrapper')
+      // .with(withDraggableWrapperMock)
       .replace('connect')
       .with(connectMock);
     wrapper = mount(<Canvas id="foo_canvas" items={items} addons={addons} />);
@@ -85,9 +85,9 @@ describe('Canvas View', () => {
       );
     });
 
-    it('HOC withDraggableWrapper should be called with correct params', () => {
-      expect(withDraggableWrapperMock).toHaveBeenCalledWith('canvas_item', 0.1);
-    });
+    // it('HOC withDraggableWrapper should be called with correct params', () => {
+    //   expect(withDraggableWrapperMock).toHaveBeenCalledWith('canvas_item', 0.1);
+    // });
   });
 
   describe('click item', () => {
@@ -100,7 +100,7 @@ describe('Canvas View', () => {
     });
 
     it('state `selectedItem` should be set to item id ', () => {
-      expect(wrapper.state('selectedItem')).toBe(itemId);
+      expect(wrapper.state('selectedItems').indexOf(itemId)).toBe(0);
     });
 
     it('item should highlight', () => {
@@ -117,7 +117,7 @@ describe('Canvas View', () => {
     });
 
     it('state `selectedItem` should be set to null', () => {
-      expect(wrapper.state('selectedItem')).toBe(null);
+      expect(wrapper.state('selectedItems').length).toBe(0);
     });
 
     it('no item should highlight', () => {

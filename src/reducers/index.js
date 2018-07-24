@@ -3,10 +3,10 @@
 import {
   ACTION_SELECTED_ITEM_CHANGED,
   ACTION_ADD_ITEM_TO_CANVAS,
-  ACTION_UPDATE_ITEM_PROPS,
+  ACTION_UPDATE_ITEMS,
 } from '../actions';
 
-import type { ItemSelectionAction, ItemAction } from '../actions';
+import type { ItemSelectionAction, UpdateItemsAction } from '../actions';
 import type { ItemProps } from '../components/addons';
 
 export const selectedItemReducer = (
@@ -27,21 +27,23 @@ export const selectedItemReducer = (
   }
 };
 
-export const itemsReducer = (state: Object = {}, action: ItemAction): ItemProps => {
+export const itemsReducer = (state: Object = {}, action: UpdateItemsAction): ItemProps => {
   const { type, data } = action;
   switch (type) {
     case ACTION_ADD_ITEM_TO_CANVAS:
-    case ACTION_UPDATE_ITEM_PROPS: {
-      const items = {
+    case ACTION_UPDATE_ITEMS: {
+      const { items } = data;
+      const results = {
         ...state,
       };
-      const { itemProps } = data;
-      const { id } = itemProps;
-      items[id] = {
-        ...items[id],
-        ...itemProps,
-      };
-      return items;
+      items.forEach((item) => {
+        const { id } = item;
+        results[id] = {
+          ...results[id],
+          ...item,
+        };
+      });
+      return results;
     }
     default:
       return state;

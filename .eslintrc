@@ -8,7 +8,8 @@
   "globals": {
     "setFixtures": true,
     "appendSetFixtures": true,
-    "SyntheticEvent": true
+    "SyntheticEvent": true,
+    "SyntheticMouseEvent": true,
   },
   "rules": {
     "radix": "off",

@@ -21,7 +21,7 @@ type State = {
   content: ?string,
 };
 
-export default class extends React.Component<ItemProps & OtherProps, State> {
+export default class extends React.PureComponent<ItemProps & OtherProps, State> {
   constructor(props: ItemProps & OtherProps) {
     super(props);
     const { content } = props;

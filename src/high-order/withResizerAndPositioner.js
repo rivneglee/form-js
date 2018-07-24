@@ -16,6 +16,7 @@ type OtherProps = {
   onResize?: (width: number, height: number) => void,
   onMove?: (x: number, y: number, deltaX: number, deltaY: number) => void,
   disableDragging?: boolean,
+  disableResizing?: boolean,
 };
 
 type Props = Coordinate & OtherProps;
@@ -80,12 +81,25 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
       const {
         width, height, x, y,
       } = this.state;
-      const { className, disableDragging, ...rest } = this.props;
+      const {
+        className, disableDragging, disableResizing, ...rest
+      } = this.props;
+      const resizingOptions = {
+        bottom: !disableResizing,
+        bottomLeft: !disableResizing,
+        bottomRight: !disableResizing,
+        left: !disableResizing,
+        right: !disableResizing,
+        top: !disableResizing,
+        topLeft: !disableResizing,
+        topRight: !disableResizing,
+      };
       return (
         <Rnd
           className={className || ''}
           size={{ width, height }}
           disableDragging={disableDragging}
+          enableResizing={resizingOptions}
           position={{ x, y }}
           onDrag={this.onMove}
           onResize={this.onResize}
