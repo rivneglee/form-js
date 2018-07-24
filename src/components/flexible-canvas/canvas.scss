@@ -10,3 +10,21 @@
     }
   }
 }
+
+.selectable-area {
+  width: 100%;
+  height: 100%;
+
+  .selecting {
+    border: 1px dotted #FFC300;
+  }
+
+  .selectable-selectbox {
+    z-index: 9000;
+    position: absolute;
+    cursor: default;
+    background: dimgray;
+    opacity: 0.3;
+    border: 1px solid grey;
+  }
+}
