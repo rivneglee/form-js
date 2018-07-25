@@ -2211,7 +2211,7 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.2.0, core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0:
+core-js@^2.2.0, core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.7:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
@@ -8390,6 +8390,10 @@ string.prototype.repeat@^0.2.0:
 string.prototype.startswith@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/string.prototype.startswith/-/string.prototype.startswith-0.2.0.tgz#da68982e353a4e9ac4a43b450a2045d1c445ae7b"
+
+string.startswith-polyfill@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/string.startswith-polyfill/-/string.startswith-polyfill-1.0.1.tgz#2ac21e10e6d6ed79d9e317cd90810c650067d7ab"
 
 string_decoder@^1.0.0, string_decoder@~1.1.1:
   version "1.1.1"
