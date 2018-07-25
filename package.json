@@ -36,7 +36,7 @@
     "react-resizable-box": "^2.1.0",
     "react-rnd": "^8.0.2",
     "react-selectable-fast": "^2.1.0",
-    "redux": "^4.0.0",
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
