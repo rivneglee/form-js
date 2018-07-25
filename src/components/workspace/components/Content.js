@@ -1,7 +1,9 @@
 import React from 'react';
-import Canvas from '../../flexible-canvas';
+import createFlexibleCanvas from '../createFlexibleCanvas';
 import { generateId } from '../../../utils';
 import addons from '../../addons';
+
+const Canvas = createFlexibleCanvas();
 
 export default class extends React.Component<*> {
   constructor(props: ?Object) {

@@ -12,7 +12,14 @@ describe('Checkbox list canvas view', () => {
   describe('render', () => {
     let wrapper;
     beforeAll(() => {
-      wrapper = shallow(<CanvasView id={id} options={options} onPropsChanged={onPropsChanged} label={label}/>);
+      wrapper = shallow(
+        <CanvasView
+          id={id}
+          options={options}
+          onPropsChanged={onPropsChanged}
+          label={label}
+        />,
+      );
     });
 
     it('CheckboxList should be rendered', () => {

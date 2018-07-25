@@ -33,7 +33,7 @@ describe('CheckboxList', () => {
     });
 
     describe('enabled', () => {
-      beforeAll(done => {
+      beforeAll((done) => {
         wrapper.setState({
           enableEditing: true,
         }, () => done());
@@ -49,7 +49,7 @@ describe('CheckboxList', () => {
     });
 
     describe('disabled', () => {
-      beforeAll(done => {
+      beforeAll((done) => {
         wrapper.setState({
           enableEditing: false,
         }, () => done());
