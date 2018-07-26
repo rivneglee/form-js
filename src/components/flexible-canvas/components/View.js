@@ -11,12 +11,13 @@ type Props = {
   addons: Array<AddOn>,
   items: Array<ItemProps>,
   onSelectedItemChanged?: (selectedItem: ?string) => void,
-  onItemsPropsUpdated: (items: Array<ItemProps>) => void,
+  onItemsPropsUpdated?: (items: Array<ItemProps>) => void,
 };
 
 type State = {
   selectedItems: Array<string>,
   dragSelectionEnabled: boolean,
+  items: Array<ItemProps>,
 };
 
 type SelectableItemType = {
@@ -30,13 +31,21 @@ type SelectableGroupType = {
 const View = class extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    const { addons } = props;
+    const { addons, items } = props;
     this.state = {
       selectedItems: [],
       dragSelectionEnabled: true,
+      items,
     };
     this.addonViews = createAddonsView(addons);
     this.selectingItems = [];
+  }
+
+  componentWillReceiveProps(props: Props) {
+    const { items } = props;
+    this.setState({
+      items,
+    });
   }
 
   onSelectionFinish = () => {
@@ -122,12 +131,15 @@ const View = class extends Component<Props, State> {
     const { onItemsPropsUpdated, items } = this.props;
     updatedItems.forEach(({ id, ...rest }) => {
       const index = items.findIndex(i => i.id === id);
-      if (index > 0) {
+      if (index >= 0) {
         items[index] = {
           ...items[index],
           ...rest,
         };
       }
+    });
+    this.setState({
+      items,
     });
     if (onItemsPropsUpdated) {
       onItemsPropsUpdated(updatedItems);
@@ -159,8 +171,8 @@ const View = class extends Component<Props, State> {
   selectingItems: Array<string>;
 
   render() {
-    const { selectedItems, dragSelectionEnabled } = this.state;
-    const { items, id } = this.props;
+    const { selectedItems, dragSelectionEnabled, items } = this.state;
+    const { id } = this.props;
     return (
       <SelectableGroup
         ref={this.setSelectableRef}

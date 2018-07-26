@@ -54,25 +54,32 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
     }
   }
 
-    onResize = (evt: any, direction: any, ref: any) => {
-      const { onResize } = this.props;
+    onResizeStop = (evt: any, direction: any, ref: any) => {
       this.setState({
         width: ref.offsetWidth,
         height: ref.offsetHeight,
       });
+    };
+
+    onResize = (evt: any, direction: any, ref: any) => {
+      const { onResize } = this.props;
       if (onResize) {
         onResize(ref.offsetWidth, ref.offsetHeight);
       }
     };
 
-    onMove = (evt: any, position: Coordinate) => {
-      const { onMove, x, y } = this.props;
-      const newX = position.x;
-      const newY = position.y;
-      const deltaX = newX - x;
-      const deltaY = newY - y;
+    onMoveStop = (evt: any, position: Coordinate) => {
+      const { x, y } = position;
       this.setState({ x, y });
+    };
+
+    onMove = (evt: any, position: Coordinate) => {
+      const { onMove } = this.props;
       if (onMove) {
+        const newX = position.x;
+        const newY = position.y;
+        const deltaX = evt.movementX;
+        const deltaY = evt.movementY;
         onMove(newX, newY, deltaX, deltaY);
       }
     };
@@ -102,7 +109,9 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
           enableResizing={resizingOptions}
           position={{ x, y }}
           onDrag={this.onMove}
+          onDragStop={this.onMoveStop}
           onResize={this.onResize}
+          onResizeStop={this.onResizeStop}
         >
           <ComposedComponent
             disableDragging={disableDragging}

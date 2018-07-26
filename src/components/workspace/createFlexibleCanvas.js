@@ -12,11 +12,7 @@ const mapDispatchToProps = dispatch => ({
   onSelectedItemChanged: id => dispatch(selectItemActionCreator(id)),
 });
 
-const mapStateToProps = ({ items }) => ({
-  items: Object.values(items),
-});
-
 export default () => connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(withDroppableWrapper(['toolbox_item'])(View));
