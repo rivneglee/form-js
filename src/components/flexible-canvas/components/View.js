@@ -111,6 +111,13 @@ const View = class extends Component<Props, State> {
     }
   };
 
+  onRotate = (deg: number) => {
+    const { selectedItems } = this.state;
+    if (selectedItems.length === 1) {
+      this.updateItemProps({ id: selectedItems[0], deg });
+    }
+  };
+
   setSelectableRef = (ref: ?SelectableGroupType) => {
     this.selectable = ref;
   };
@@ -186,21 +193,23 @@ const View = class extends Component<Props, State> {
             {items.map((item: ItemProps) => {
               const { type, ...rest } = item;
               if (!type || !item.id) return null;
-              const cssClass = selectedItems.indexOf(item.id) !== -1 ? 'canvas__item--selected' : '';
               const ItemView = this.addonViews[type];
               const disableResizing = selectedItems.length > 1;
+              const isSelected = selectedItems.indexOf(item.id) !== -1;
               return (
                 <div
                   key={item.id}
-                  className={`canvas__item ${cssClass}`}
+                  className="canvas__item"
                   onMouseDown={evt => this.onSelectItem(evt, item.id)}
                   onMouseEnter={() => this.toggleDragSelection(false)}
                   onMouseLeave={() => this.toggleDragSelection(true)}
                 >
                   <ItemView
                     id={item.id}
+                    isSelected={isSelected}
                     onMove={this.onMoveItem}
                     onResize={this.onResizeItem}
+                    onRotate={this.onRotate}
                     disableResizing={disableResizing}
                     onPropsChanged={this.updateItemProps}
                     {...rest}

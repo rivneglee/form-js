@@ -36,7 +36,7 @@ const View = class extends React.Component {
 
   render() {
     const {
-      x, y, width, height,
+      x, y, width, height, deg,
     } = this.state;
     return (
       <div className="properties-panel">
@@ -76,6 +76,17 @@ const View = class extends React.Component {
                 className="properties-panel__text-field properties-panel__text-field--short"
                 onInput={evt => this.onInput('height', Number(evt.target.value))}
                 value={height || 0}
+              />
+            </div>
+          </div>
+          <div className="properties-panel__field-group">
+            <div className="properties-panel__label">ANGLE</div>
+            <div>
+              <input
+                type="number"
+                className="properties-panel__text-field"
+                onInput={evt => this.onInput('deg', Number(evt.target.value))}
+                value={deg || 0}
               />
             </div>
           </div>

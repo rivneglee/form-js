@@ -3,12 +3,6 @@
   height: 100%;
   border: 1px dashed rgba(255,255,255,0.4);
   background-image: radial-gradient(circle farthest-corner at center, #415B77 0%, #2c3e50 100%);
-
-  &__item {
-    &--selected > div {
-      border: 1px solid rgb(42, 175, 223);
-    }
-  }
 }
 
 .selectable-area {
@@ -17,6 +11,18 @@
 
   .selecting {
     border: 1px dotted #FFC300;
+  }
+
+  .selected {
+    border: 1px solid rgb(42, 175, 223);
+  }
+
+  .react__drag__rotate__rotater {
+    display: none;
+  }
+
+  .selected + .react__drag__rotate__rotater-wrap > .react__drag__rotate__rotater {
+    display: block;
   }
 
   .selectable-selectbox {

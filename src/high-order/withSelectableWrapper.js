@@ -6,16 +6,14 @@ const withSelectableWrapper = (ComposedComponent) => {
     render() {
       const {
         selectableRef,
-        selected,
-        selecting,
+        isSelected,
         width,
         height,
         ...rest
       } = this.props;
-      const selectingCss = selecting ? 'selecting' : '';
-      const selectedCss = selected ? 'selected' : '';
+      const selectedCss = isSelected ? 'selected' : '';
       return (
-        <div ref={selectableRef} className={`${selectingCss} ${selectedCss}`} style={{ width, height }}>
+        <div ref={selectableRef} className={selectedCss} style={{ width, height }}>
           <ComposedComponent width={width} height={height} {...rest} />
         </div>
       );

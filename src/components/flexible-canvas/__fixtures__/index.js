@@ -9,6 +9,7 @@ export const items: Array<ItemProps> = [
     y: 101,
     width: 105,
     height: 114,
+    deg: 0,
   },
   {
     id: '5592ce10-6140-aea4-dc14-21f008948cac',
@@ -17,6 +18,7 @@ export const items: Array<ItemProps> = [
     y: 189,
     width: 350,
     height: 33,
+    deg: 0,
   },
   {
     id: '31dd92ad-5217-13ee-236f-abc865840747',
@@ -25,6 +27,7 @@ export const items: Array<ItemProps> = [
     y: 98,
     width: 170,
     height: 33,
+    deg: 0,
   },
   {
     id: '88d33307-129e-c3c4-9a22-4bef9907cae3',
@@ -33,5 +36,6 @@ export const items: Array<ItemProps> = [
     y: 228,
     width: 300,
     height: 300,
+    deg: 0,
   },
 ];

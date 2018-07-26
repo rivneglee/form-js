@@ -47,17 +47,5 @@ describe('CheckboxList', () => {
         expect(wrapper.find(Editor).length).toBe(1);
       });
     });
-
-    describe('disabled', () => {
-      beforeAll((done) => {
-        wrapper.setState({
-          enableEditing: false,
-        }, () => done());
-      });
-
-      it('option label should be rendered', () => {
-        expect(wrapper.find('.addon-checkbox-list__option').length).toBe(3);
-      });
-    });
   });
 });

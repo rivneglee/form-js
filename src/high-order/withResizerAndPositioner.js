@@ -99,7 +99,7 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
         right: !disableResizing,
         top: !disableResizing,
         topLeft: !disableResizing,
-        topRight: !disableResizing,
+        topRight: false,
       };
       return (
         <Rnd
