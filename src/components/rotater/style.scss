@@ -1,0 +1,25 @@
+.rotater {
+  border-radius: 20% 80% 20% 80%;
+  border: 4px solid;
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    transformOrigin: center center;
+    display: inline-block;
+    z-index: -1;
+  }
+
+  &__handle {
+    width: 20px;
+    height: 20px;
+    border-top-color: #ccc;
+    border-right-color: #ccc;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    cursor: move;
+  }
+}

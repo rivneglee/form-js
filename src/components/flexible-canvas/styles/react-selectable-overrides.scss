@@ -10,14 +10,6 @@
     border: 1px solid rgb(42, 175, 223);
   }
 
-  .react__drag__rotate__rotater {
-    display: none;
-  }
-
-  .selected + .react__drag__rotate__rotater-wrap > .react__drag__rotate__rotater {
-    display: block;
-  }
-
   .selectable-selectbox {
     z-index: 9000;
     position: absolute;

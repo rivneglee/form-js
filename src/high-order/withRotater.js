@@ -1,21 +1,24 @@
 /* @flow */
 import React, { Component } from 'react';
 import type { ComponentType as C } from 'react';
-import Rotater from 'react-drag-rotater';
+import Rotater from '../components/rotater';
 import { objectCompare } from '../utils';
+
+type OtherProps = {
+  width: number | string,
+  height: number | string,
+};
 
 type Props = {
   deg: number,
   onRotate?: (deg: number) => void,
-  width: number | string,
-  height: number | string,
-};
+} & OtherProps;
 
 type State = {
   deg: number,
 };
 
-export default (ComposedComponent: C<Props>) => class extends Component<Props, State> {
+export default (ComposedComponent: C<OtherProps>) => class extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     const { deg } = props;
@@ -31,27 +34,25 @@ export default (ComposedComponent: C<Props>) => class extends Component<Props, S
     }
   }
 
-  onRotate = ({ deg }: {deg: number}) => {
+  onRotateStop = ({ deg }: {deg: number}) => {
     const { onRotate } = this.props;
     const newDeg = Math.ceil(deg);
-    this.setState({
-      deg: newDeg,
-    });
-
     if (onRotate) {
       onRotate(newDeg);
     }
   };
 
   render() {
-    const { deg } = this.state;
-    const { width, height } = this.props;
-    const style = { width, height, transformOrigin: 'center center' };
+    const {
+      width,
+      height,
+      deg,
+      ...rest
+    } = this.props;
     return (
-      <div style={{ transform: `rotate(${deg}deg)`, ...style }}>
-        <ComposedComponent height={height} width={width} {...this.props} />
-        <Rotater onRotate={this.onRotate} origin="center-center" />
-      </div>
+      <Rotater height={height} width={width} deg={deg} onRotateStop={this.onRotateStop}>
+        <ComposedComponent height={height} width={width} {...rest} />
+      </Rotater>
     );
   }
 };

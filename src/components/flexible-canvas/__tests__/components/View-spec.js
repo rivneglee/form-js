@@ -59,7 +59,6 @@ describe('Canvas View', () => {
           y,
           width: '100%',
           height: '100%',
-          deg: 0,
         }),
       );
     });
@@ -82,7 +81,6 @@ describe('Canvas View', () => {
           y,
           width: '100%',
           height: '100%',
-          deg: 0,
         }),
       );
     });

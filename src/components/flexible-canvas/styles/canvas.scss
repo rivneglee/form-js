@@ -1,4 +1,3 @@
-@import "react-drag-rotater-overrides";
 @import "react-selectable-overrides";
 
 .canvas {
@@ -10,6 +9,12 @@
   &__item {
     &--selected > div {
       border: 1px dotted rgba(42, 175, 223, 0.5);
+      .rotater__handle {
+        display: block;
+      }
+    }
+    .rotater__handle {
+      display: none;
     }
   }
 }

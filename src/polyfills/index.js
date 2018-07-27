@@ -6,3 +6,4 @@ import 'core-js/fn/array/from';
 import 'core-js/fn/array/is-array';
 import 'core-js/fn/map';
 import 'core-js/fn/set';
+import 'core-js/modules/es6.symbol';

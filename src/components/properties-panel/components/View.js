@@ -14,6 +14,7 @@ const View = class extends React.Component {
 
   componentWillReceiveProps(props) {
     const { onPropsChanged, item } = props;
+    console.log(item);
     this.onPropsChanged = onPropsChanged.bind(this);
     this.setState({
       ...item,
