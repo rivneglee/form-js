@@ -75,11 +75,12 @@ export default (ComposedComponent: C<OtherProps>) => class extends Component<Pro
 
     onMove = (evt: any, position: Coordinate) => {
       const { onMove } = this.props;
+      const { x, y } = this.state;
       if (onMove) {
         const newX = position.x;
         const newY = position.y;
-        const deltaX = evt.movementX;
-        const deltaY = evt.movementY;
+        const deltaX = evt.movementX || (newX - x);
+        const deltaY = evt.movementY || (newY - y);
         onMove(newX, newY, deltaX, deltaY);
       }
     };
