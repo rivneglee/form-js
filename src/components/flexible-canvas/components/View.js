@@ -4,7 +4,7 @@ import { SelectableGroup } from 'react-selectable-fast';
 import ScrollBar from '../../scrollbar';
 import type { AddOn, ItemProps } from '../../addons';
 import createAddonsView from '../createAddonsView';
-import '../canvas.scss';
+import '../styles/canvas.scss';
 
 type Props = {
   id: string,
@@ -196,10 +196,11 @@ const View = class extends Component<Props, State> {
               const ItemView = this.addonViews[type];
               const disableResizing = selectedItems.length > 1;
               const isSelected = selectedItems.indexOf(item.id) !== -1;
+              const cssClass = selectedItems.indexOf(item.id) !== -1 ? 'canvas__item--selected' : '';
               return (
                 <div
                   key={item.id}
-                  className="canvas__item"
+                  className={`canvas__item ${cssClass}`}
                   onMouseDown={evt => this.onSelectItem(evt, item.id)}
                   onMouseEnter={() => this.toggleDragSelection(false)}
                   onMouseLeave={() => this.toggleDragSelection(true)}

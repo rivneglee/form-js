@@ -1,0 +1,15 @@
+@import "react-drag-rotater-overrides";
+@import "react-selectable-overrides";
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed rgba(255,255,255,0.4);
+  background-image: radial-gradient(circle farthest-corner at center, #415B77 0%, #2c3e50 100%);
+
+  &__item {
+    &--selected > div {
+      border: 1px dotted rgba(42, 175, 223, 0.5);
+    }
+  }
+}
