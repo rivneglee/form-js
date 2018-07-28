@@ -102,13 +102,18 @@ export default class extends PureComponent<Props, State> {
   };
 
   originX: number;
-  originY: number;
-  ref: ?HTMLDivElement;
-  dragging: boolean;
-  lastRad: number;
-  startX: number;
-  startY: number;
 
+  originY: number;
+
+  ref: ?HTMLDivElement;
+
+  dragging: boolean;
+
+  lastRad: number;
+
+  startX: number;
+
+  startY: number;
 
   render() {
     const { deg } = this.state;

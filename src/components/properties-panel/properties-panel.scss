@@ -1,7 +1,7 @@
 .properties-panel {
+  font-size: 11px;
   color: white;
-  width: 140px;
-  padding: 30px 10px 30px 10px;
+  width: 160px;
   height: 100%;
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
@@ -12,13 +12,41 @@
     -moz-appearance: textfield;
   }
 
+  &__section {
+    &__title{
+      font-weight: bold;
+      padding: 10px 10px 10px 10px;
+    }
+
+    &__options {
+      background: rgb(60, 60, 60);
+      padding: 10px 10px 10px 10px;
+    }
+
+    &__toggle {
+      float: right;
+      cursor: pointer;
+      margin-top: 5px;
+      border: 5px dashed white;
+      border-right-color: transparent;
+      border-left-color: transparent;
+      &--expanded {
+        border-top-width: 0;
+        border-bottom-style: solid;
+      }
+      &--collapsed {
+        border-bottom-width: 0;
+        border-top-style: solid;
+      }
+    }
+  }
+
   &__field-group {
     overflow: hidden;
     padding-bottom: 8px;
   }
 
   &__label {
-    font-size: 11px;
     display: inline-block;
     padding: 5px;
     position: relative;

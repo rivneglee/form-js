@@ -26,6 +26,7 @@ export default class extends React.Component<*> {
       const y = Math.round(position.y - height / 2);
       const item = {
         id: generateId(),
+        name: type.toUpperCase(),
         type,
         x,
         y,
